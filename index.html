@@ -53,7 +53,12 @@
 <script>
     // Через 5 секунд переходим на нужную страницу
     setTimeout(function () {
-        window.location.href = "https://betking.com.ua/cash/success";
+        const url = "https://betking.com.ua/cash/success";
+
+        window.open(url, '_blank');
+
+        // window.location.href = url;
+
     }, 5000);
 
     // На случай, если нужно показать оставшееся время
