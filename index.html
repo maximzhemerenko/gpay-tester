@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Processing payment</title>
+  <style>
+      html,body {
+          height: 100%;
+          margin: 0;
+          font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+          background: #0f172a;
+          color: #e6eef8;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .card {
+          text-align: center;
+          padding: 32px;
+          border-radius: 12px;
+          box-shadow: 0 8px 24px rgba(2,6,23,0.6);
+          background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      }
+      .title {
+          font-size: 20px;
+          letter-spacing: 0.6px;
+          margin-bottom: 12px;
+      }
+      .spinner {
+          width: 48px;
+          height: 48px;
+          border: 4px solid rgba(255,255,255,0.12);
+          border-top-color: #60a5fa;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 16px;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .small {
+          font-size: 13px;
+          opacity: 0.8;
+      }
+  </style>
+</head>
+<body>
+<div class="card" role="status" aria-live="polite">
+  <div class="spinner" aria-hidden="true"></div>
+  <div class="title">Processing payment</div>
+  <div class="small">You will be redirected shortly...</div>
+</div>
+
+<script>
+    // Через 5 секунд переходим на нужную страницу
+    setTimeout(function () {
+        window.location.href = "https://betking.com.ua/cash/success";
+    }, 5000);
+
+    // На случай, если нужно показать оставшееся время
+    (function countdown() {
+        var start = Date.now();
+        var total = 5000;
+        var card = document.querySelector('.card .small');
+        if (!card) return;
+        var t = setInterval(function () {
+            var elapsed = Date.now() - start;
+            var left = Math.max(0, Math.ceil((total - elapsed) / 1000));
+            card.textContent = "Redirecting in " + left + "s...";
+            if (elapsed >= total) clearInterval(t);
+        }, 250);
+    })();
+</script>
+</body>
+</html>
