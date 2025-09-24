@@ -51,20 +51,22 @@
 </div>
 
 <script>
+    const interval = 2000
+
     // Через 5 секунд переходим на нужную страницу
     setTimeout(function () {
-        const url = "slotoking://cash/success";
+        const url = "app777://bonus-activation/?refcode=G6fjBDBmTEV";
 
         // window.open('https://betking.com.ua', '_blank');
 
         window.location.href = url;
 
-    }, 5000);
+    }, interval);
 
     // На случай, если нужно показать оставшееся время
     (function countdown() {
         var start = Date.now();
-        var total = 5000;
+        var total = interval;
         var card = document.querySelector('.card .small');
         if (!card) return;
         var t = setInterval(function () {
